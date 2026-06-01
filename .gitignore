@@ -1,0 +1,29 @@
+# Secrets
+.env
+*.pem
+*credentials*
+gcp_credentials.json
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+dist/
+build/
+*.egg-info/
+
+# Local data (keep structure only)
+data/inbox/*
+!data/inbox/.gitkeep
+data/work/*
+!data/work/.gitkeep
+data/outbox/*
+!data/outbox/.gitkeep
+data/staging/*
+!data/staging/.gitkeep
+
+# OS / IDE
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/

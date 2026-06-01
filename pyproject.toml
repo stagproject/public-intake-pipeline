@@ -1,0 +1,25 @@
+[project]
+name = "public-intake-pipeline"
+version = "0.1.0"
+description = "Public portfolio: Python public-source intake, Supabase state, deduplication"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+dependencies = [
+    "beautifulsoup4>=4.12",
+    "boto3>=1.34",
+    "lxml>=5.0",
+    "python-dotenv>=1.0",
+    "requests>=2.31",
+    "supabase>=2.0",
+]
+
+[project.scripts]
+intake-inbox = "intake_pipeline.local_inbox:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["intake_pipeline"]
