@@ -53,14 +53,37 @@ This is a **curated public repo**. A larger private codebase adds LLM extraction
 
 ---
 
-## Setup
+## Runnable after clone?
+
+| Track | Time | Needs |
+|-------|------|--------|
+| **A — Local inbox** | ~5 min | `uv sync` + a file in `data/inbox/` |
+| **B — SEC + Supabase** | ~5–15 min | `.env`, SQL schema, `intake_watchlist` row, `SEC_USER_AGENT` |
+
+**Path A** does not use the network (except `uv sync`). **Path B** writes real `pending` rows to `intake_batch_status`.
+
+**Not published here:** LLM extraction, warehouse schedulers, catalog/sales delivery, or internal ops docs.
+
+Full step-by-step commands: **[`README.md` — 5-minute setup](../README.md#5-minute-setup)**.
+
+---
+
+## Setup (short)
 
 ```bash
-cp .env.example .env
+git clone https://github.com/stagproject/public-intake-pipeline.git
+cd public-intake-pipeline
 uv sync
-# Apply sql/intake_pipeline_schema.sql in Supabase SQL editor
+
+# Path A — no .env required
+# (add a file under data/inbox/ first)
 uv run python -m intake_pipeline.local_inbox
+
+# Path B — Supabase + SEC
+cp .env.example .env   # edit SUPABASE_* and SEC_USER_AGENT
+# Run sql/intake_pipeline_schema.sql in Supabase SQL editor
 uv run python -m intake_pipeline.collectors.sec_edgar --mode TEST
+uv run python -m intake_pipeline.collectors.sec_edgar --mode DAILY --max-new 3
 ```
 
 ---
