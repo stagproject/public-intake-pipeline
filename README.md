@@ -33,7 +33,7 @@ This repo is a **curated subset** of a larger private monorepo. It does not incl
 ## Quick start
 
 ```bash
-git clone https://github.com/YOUR_USER/public-intake-pipeline.git
+git clone https://github.com/stagproject/public-intake-pipeline.git
 cd public-intake-pipeline
 cp .env.example .env   # fill Supabase + optional object storage
 
